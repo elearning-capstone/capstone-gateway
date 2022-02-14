@@ -8,6 +8,6 @@ exports.tokenVerifyMiddleware = async (req, res, next) => {
         return res.status(403).json({ message: err.name });
     }
 
-    req.user = user;
+    req.headers.user = user;
     next();
 };
