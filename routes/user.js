@@ -4,7 +4,7 @@ const router = express.Router();
 
 const user_ip = "http://i-09a9471f1fb723e78.ap-southeast-1.compute.internal:3000";
 
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
     try {
         const response = await axios.post(user_ip + "/", req.body);
         return res.json({ user: response.data.user });
