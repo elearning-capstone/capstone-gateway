@@ -10,7 +10,7 @@ router.post("/register", tokenVerifyMiddleware, async (req, res) => {
         const response = await axios.post(user_ip + "/course/register", req.body, { headers: { user: req.headers['user'] } });
         return res.json({ message: "unimplemented" });
     } catch (err) {
-        return res.status(err.response.status).json(err.response.data);
+        return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
     }
 });
 

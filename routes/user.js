@@ -11,7 +11,7 @@ router.post("/register", async (req, res) => {
         const response = await axios.post(user_ip + "/register", req.body);
         return res.json({ user: response.data.user });
     } catch (err) {
-        return res.status(err.response.status).json(err.response.data);
+        return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
     }
 });
 
@@ -21,7 +21,7 @@ router.post("/login", async (req, res) => {
         const token = jwt.sign({ user_id: response.data.user_id }, "secret", { expiresIn: "7d" });
         return res.json({ token });
     } catch (err) {
-        return res.status(err.response.status).json(err.response.data);
+        return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
     }
 });
 
