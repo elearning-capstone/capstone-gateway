@@ -5,6 +5,15 @@ const router = express.Router();
 
 const user_ip = "http://ip-172-31-33-253.ap-southeast-1.compute.internal:3000";
 
+router.get("/", async (req, res) => {
+    try {
+        const response = await axios.get(user_ip + "/course");
+        return res.json(response.data);
+    } catch (err) {
+        return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
+    }
+});
+
 router.post("/register", tokenVerifyMiddleware, async (req, res) => {
     try {
         const response = await axios.post(user_ip + "/course/register", req.body, { headers: { user: req.headers['user'] } });
