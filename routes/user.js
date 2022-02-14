@@ -4,7 +4,7 @@ const axios = require("axios");
 const { tokenVerifyMiddleware } = require("../middleware");
 const router = express.Router();
 
-const user_ip = "http://i-09a9471f1fb723e78.ap-southeast-1.compute.internal:3000";
+const user_ip = "http://ip-172-31-33-253.ap-southeast-1.compute.internal:3000";
 
 router.post("/register", async (req, res) => {
     try {
