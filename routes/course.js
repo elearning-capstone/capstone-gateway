@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 router.post("/register", tokenVerifyMiddleware, async (req, res) => {
     try {
-        const response = await axios.post(user_ip + "/course/register", req.body, { headers: { user: req.headers['user'] } });
+        const response = await axios.post(user_ip + "/course/register", req.body, { params: req.query });
         return res.json({ message: "unimplemented" });
     } catch (err) {
         return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
