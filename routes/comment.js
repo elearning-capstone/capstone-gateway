@@ -44,7 +44,7 @@ router.post("/like", tokenVerifyMiddleware, async (req, res) => {
 
 router.post("/unlike", tokenVerifyMiddleware, async (req, res) => {
     try {
-        const response = await axios.post(user_ip + "/unlike", req.body, { params: req.query });
+        const response = await axios.post(user_ip + "/comment/unlike", req.body, { params: req.query });
         return res.json(response.data);
     } catch (err) {
         return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
