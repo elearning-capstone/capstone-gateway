@@ -7,7 +7,6 @@ const user_ip = "http://ip-172-31-33-253.ap-southeast-1.compute.internal:3000";
 
 router.get("/", tokenVerifyMiddleware, async (req, res) => {
     try {
-        console.log(req.query);
         const response = await axios.get(user_ip + "/comment", { params: req.query });
         return res.json(response.data);
     } catch (err) {
