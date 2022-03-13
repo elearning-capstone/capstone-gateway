@@ -7,16 +7,16 @@ const user_ip = "http://ip-172-31-33-253.ap-southeast-1.compute.internal:3000";
 
 router.get("/", async (req, res) => {
     try {
-        const response = await axios.get(user_ip + "/review");
+        const response = await axios.get(user_ip + "/review", { params: req.query });
         return res.json(response.data);
     } catch (err) {
         return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
     }
 });
 
-router.post("/create", tokenVerifyMiddleware, async (req, res) => {
+router.post("/", tokenVerifyMiddleware, async (req, res) => {
     try {
-        const response = await axios.post(user_ip + "/review/create", req.body, { params: req.query });
+        const response = await axios.post(user_ip + "/review", req.body, { params: req.query });
         return res.json(response.data);
     } catch (err) {
         return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
