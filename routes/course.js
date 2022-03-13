@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 router.get("/study", tokenVerifyMiddleware, async (req, res) => {
     try {
-        const response = await axios.get(user_ip + "/course/study");
+        const response = await axios.get(user_ip + "/course/study", { params: req.query });
         return res.json(response.data);
     } catch (err) {
         return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
