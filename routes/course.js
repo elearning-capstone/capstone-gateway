@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/study", async (req, res) => {
+router.get("/study", tokenVerifyMiddleware, async (req, res) => {
     try {
         const response = await axios.get(user_ip + "/course/study");
         return res.json(response.data);
