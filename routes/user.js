@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
     try {
         const response = await axios.post(user_ip + "/user/login", req.body);
         const token = jwt.sign(response.data, "secret", { expiresIn: "7d" });
-        return res.json({ token });
+        return res.json({ token, role: response.data.role });
     } catch (err) {
         return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
     }
