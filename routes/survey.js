@@ -25,7 +25,7 @@ router.post("/", tokenVerifyMiddleware, async (req, res) => {
 
 router.get("/result", tokenVerifyMiddleware, async (req, res) => {
     try {
-        const response = await axios.post(user_ip + "/survey/result", { params: req.query });
+        const response = await axios.get(user_ip + "/survey/result", { params: req.query });
         return res.json(response.data);
     } catch (err) {
         return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
