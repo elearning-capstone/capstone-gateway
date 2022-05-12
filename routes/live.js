@@ -41,6 +41,15 @@ router.post("/chat", tokenVerifyMiddleware, async (req, res) => {
     }
 });
 
+router.post("/reaction", tokenVerifyMiddleware, async (req, res) => {
+    try {
+        const response = await axios.post(user_ip + "/live/reaction", req.body, { params: req.query });
+        return res.json(response.data);
+    } catch (err) {
+        return res.status(err.response.status || 404).json(err.response.data || { message: "not found" });
+    }
+});
+
 router.post("/", tokenVerifyMiddleware, async (req, res) => {
     try {
         const response = await axios.post(user_ip + "/live/", req.body, { params: req.query });
